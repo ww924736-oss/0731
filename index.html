@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketch</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- 使用 CDN（defer 確保在 sketch.js 前載入） -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+
+    <!-- 備援：若 p5 未載入則嘗試另一個 CDN -->
+    <script>
+      (function(){
+        function loadScript(src){ var s=document.createElement('script'); s.src=src; s.defer=true; document.head.appendChild(s); }
+        // 若頁面加載時 p5 尚未定義，短延遲後再檢查並載入備援 CDN
+        window.addEventListener('DOMContentLoaded', function(){
+          setTimeout(function(){
+            if (typeof window.p5 === 'undefined') {
+              console.warn('p5 未載入，嘗試載入備援 CDN');
+              loadScript('https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js');
+              loadScript('https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/addons/p5.sound.min.js');
+            }
+          }, 100);
+        });
+      })();
+    </script>
+
+  </head>
+
+  <body>
+    <script defer src="sketch.js"></script>
+  </body>
+</html>
